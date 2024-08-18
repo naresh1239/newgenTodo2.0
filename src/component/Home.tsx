@@ -87,6 +87,9 @@ const Home: React.FC = () => {
       const currentTodo =  TodoList.find((item)=> item.id == IndexOfTodo)
         if(currentTodo){
             setInputValue(currentTodo?.value)
+            if (Inputref.current) {
+              Inputref.current.focus();
+            }
         }
     }
   
