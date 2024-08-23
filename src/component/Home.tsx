@@ -21,7 +21,7 @@ const Home: React.FC = () => {
       }
       });
     const [ShowTODOList, setShowTODOList] = useState<TODO[]>([])
-    const Inputref = useRef<HTMLInputElement>(null)
+    const Inputref = useRef<HTMLTextAreaElement>(null)
     const [EditRowIndex, setEditRowIndex] = useState<number | null>(null)
     const [searchInputval, setsearchInputval] = useState<string>('')
     const [filterType, setfilterType] = useState('Total')
@@ -62,12 +62,12 @@ const Home: React.FC = () => {
   }, [TodoList])
   
 
-   const inputChangeFN = (e: ChangeEvent<HTMLInputElement>)=>{
+   const inputChangeFN = (e: ChangeEvent<HTMLTextAreaElement>)=>{
         const {value} = e.target
         setInputValue(value)
    } 
     
-   const inputKeyDownFn = (e: KeyboardEvent<HTMLInputElement>)=>{
+   const inputKeyDownFn = (e: KeyboardEvent<HTMLTextAreaElement>)=>{
      if(e.keyCode == 13){
         if(EditRowIndex){
             editSaveFn()
@@ -174,14 +174,16 @@ const Home: React.FC = () => {
        </div>
        <div className="input-group mb-3">
         <div>
-        <input 
+        <textarea
+          rows={4}
+          cols={50}
           id="taskInput"
-          type="text"
           className="form-control"
           placeholder="Add your task ..."
           aria-label="Add your task"
           aria-describedby="button-addon2"
-          ref={Inputref} value={InputValue}
+          ref={Inputref} 
+          value={InputValue}
          onChange={inputChangeFN}
           onKeyDown={inputKeyDownFn}/>
       {
